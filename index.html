@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Unicode Converter</title>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Hello World, CSARCH2</h1>
+    <h1>Unicode Converter</h1>
+    <h4>Will update frontend :></h4>
+
+    <p id="alert" class="error"></p>
+
+    <p>Input Unicode (Don't add 'U+'):</p>
+    <input type="text" id="unicode">
+    <button id="enter">Enter</button><br> <br>
+
+    <p>UTF-8:</p>
+    <input type="text" id="utf-8"> <br>
+
+    <p>UTF-16:</p>
+    <input type="text" id="utf-16"> <br>
+
+    <p>UTF-32:</p>
+    <input type="text" id="utf-32"> <br> <br>
+
+    <button id="export">Export to Text File</button>
+
     <script src="index.js"></script>
 </body>
 </html>

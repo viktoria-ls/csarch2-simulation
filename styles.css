@@ -1,0 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.error {
+    color: rgb(179, 24, 24);
+}
