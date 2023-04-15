@@ -55,29 +55,29 @@ document.getElementById("export").addEventListener("click", () => {
 });
 
 // TODO: Conversion for UTF-8
-  function get_UTF_8(unicode) {
-      var codepoint = parseInt(unicode, 16);
-    if (codepoint <= 0x7F) {
+function get_UTF_8(unicode) {
+  var codepoint = parseInt(unicode, 16);
+  if (codepoint <= 0x7F) {
       return codepoint.toString(16).toUpperCase().padStart(2, '0');
-    } else if (codepoint <= 0x7FF) {
+  } else if (codepoint <= 0x7FF) {
       var firstByte = 0xC0 | (codepoint >> 6);
       var secondByte = 0x80 | (codepoint & 0x3F);
       return ((firstByte << 8) | secondByte).toString(16).toUpperCase().padStart(4, '0');
-    } else if (codepoint <= 0xFFFF) {
+  } else if (codepoint <= 0xFFFF) {
       var firstByte = 0xE0 | (codepoint >> 12);
       var secondByte = 0x80 | ((codepoint >> 6) & 0x3F);
       var thirdByte = 0x80 | (codepoint & 0x3F);
       return ((firstByte << 16) | (secondByte << 8) | thirdByte).toString(16).toUpperCase().padStart(6, '0');
-    } else if (codepoint <= 0x10FFFF) {
+  } else if (codepoint <= 0x10FFFF) {
       var firstByte = 0xF0 | (codepoint >> 18);
       var secondByte = 0x80 | ((codepoint >> 12) & 0x3F);
       var thirdByte = 0x80 | ((codepoint >> 6) & 0x3F);
       var fourthByte = 0x80 | (codepoint & 0x3F);
       return ((firstByte << 24) | (secondByte << 16) | (thirdByte << 8) | fourthByte).toString(16).toUpperCase().padStart(8, '0');
-    } else {
-      throw new Error('Code point out of range');
-    }
+  } else {
+      throw new Error('out of range');
   }
+}
 
 // TODO: Conversion for UTF-16
 function get_UTF_16(unicode) {
