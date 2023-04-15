@@ -82,7 +82,20 @@ function get_UTF_8(unicode) {
 
 // TODO: Conversion for UTF-16
 function get_UTF_16(unicode) {
-    return "Replace with UTF-16";
+  var codepoint = parseInt(unicode, 16);
+  var utf16 = '';
+
+  if (codepoint < 0x10000) {
+    utf16 = String.fromCharCode(codepoint);
+  } else {
+    codepoint -= 0x10000;
+    var highSurrogate = 0xD800 + (codepoint >> 10);
+    var lowSurrogate = 0xDC00 + (codepoint & 0x3FF);
+    utf16 = String.fromCharCode(highSurrogate, lowSurrogate);
+  }
+
+  return utf16.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0') + utf16.charCodeAt(1).toString(16).toUpperCase().padStart(4, '0');
+    //return "Replace with UTF-16";
 }
 
 // TODO: Conversion for UTF-32
