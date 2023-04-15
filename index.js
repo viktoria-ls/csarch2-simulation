@@ -88,10 +88,7 @@ function get_UTF_16(unicode) {
 // TODO: Conversion for UTF-32
 function get_UTF_32(unicode) {
   var codepoint = parseInt(unicode, 16);
-  if (codepoint > 0x10FFFF) {
-    throw new Error('Code point out of range');
-  }
-  return codepoint.toString(16).toUpperCase().padStart(8, '0');  
+    return codepoint.toString(16).toUpperCase().padStart(8, '0');  
   //return "Replace with UTF-32";
 }
 
