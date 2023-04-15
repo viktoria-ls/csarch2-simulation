@@ -56,7 +56,26 @@ document.getElementById("export").addEventListener("click", () => {
 
 // TODO: Conversion for UTF-8
 function get_UTF_8(unicode) {
-    return "Replace with UTF-8";
+    var utf8 = "";
+  for (var i = 0; i < unicode.length; i += 4) {
+    var codepoint = parseInt(unicode.substr(i, 4), 16);
+    if (codepoint <= 0x7f) {
+      utf8 += String.fromCharCode(codepoint);
+    } else if (codepoint <= 0x7ff) {
+      utf8 += String.fromCharCode(0xc0 | (codepoint >> 6));
+      utf8 += String.fromCharCode(0x80 | (codepoint & 0x3f));
+    } else if (codepoint <= 0xffff) {
+      utf8 += String.fromCharCode(0xe0 | (codepoint >> 12));
+      utf8 += String.fromCharCode(0x80 | ((codepoint >> 6) & 0x3f));
+      utf8 += String.fromCharCode(0x80 | (codepoint & 0x3f));
+    } else {
+      utf8 += String.fromCharCode(0xf0 | (codepoint >> 18));
+      utf8 += String.fromCharCode(0x80 | ((codepoint >> 12) & 0x3f));
+      utf8 += String.fromCharCode(0x80 | ((codepoint >> 6) & 0x3f));
+      utf8 += String.fromCharCode(0x80 | (codepoint & 0x3f));
+    }
+  }
+  return utf8;
 }
 
 // TODO: Conversion for UTF-16
