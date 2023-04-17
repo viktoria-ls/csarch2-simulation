@@ -26,9 +26,9 @@ document.getElementById("convert").addEventListener("click", () => {
     }
 
     // If valid input
-    utf_8.value = get_UTF_8(unicode);
-    utf_16.value = get_UTF_16(unicode);
-    utf_32.value = get_UTF_32(unicode);
+    utf_8.value = formatOutput(get_UTF_8(unicode));
+    utf_16.value = formatOutput(get_UTF_16(unicode));
+    utf_32.value = formatOutput(get_UTF_32(unicode));
     convertSuccess = true;
 });
 
@@ -95,14 +95,12 @@ function get_UTF_16(unicode) {
   }
 
   return utf16.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0') + utf16.charCodeAt(1).toString(16).toUpperCase().padStart(4, '0');
-    //return "Replace with UTF-16";
 }
 
 // TODO: Conversion for UTF-32
 function get_UTF_32(unicode) {
   var codepoint = parseInt(unicode, 16);
     return codepoint.toString(16).toUpperCase().padStart(8, '0');  
-  //return "Replace with UTF-32";
 }
 
 // Resets form values
@@ -114,4 +112,15 @@ function reset_values() {
     alertDisplay.innerHTML = "";
     alertDisplay.className = "";
     alertDisplay.classList.add("red-alert");
+}
+
+function formatOutput(str) {
+    var formatted = "";
+    for(let i = 0; i < str.length; i++) {     // Adds space every 2 nibbles
+        formatted += str.charAt(i);
+        if (i % 2 == 1)
+            formatted += " ";
+    }
+
+    return formatted;
 }
