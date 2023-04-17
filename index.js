@@ -87,6 +87,7 @@ function get_UTF_16(unicode) {
 
   if (codepoint < 0x10000) {
     utf16 = String.fromCharCode(codepoint);
+    return utf16.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')
   } else {
     codepoint -= 0x10000;
     var highSurrogate = 0xD800 + (codepoint >> 10);
